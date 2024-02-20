@@ -206,6 +206,7 @@ section {
     display: block;
 }
 
+
 .working-hours-table {
     border-collapse: collapse;
     width: 100%;
@@ -265,6 +266,7 @@ footer {
     position: relative; /* Добавляем позиционирование для ::before */
     margin-top:3vw; /* Пример отступа в 20px */
     width: 97%; /* Уменьшите ширину по вашему усмотрению */
+    
 }
 
 .products-wrapper {
@@ -276,6 +278,7 @@ footer {
     margin-left: auto;
     margin-right: 2vw;
     width: 50%;
+    
 }
 
 .products-wrapper h2 {
@@ -296,16 +299,25 @@ footer {
     transition: background-color 0.3s, transform 0.3s;
     overflow: hidden;
     word-wrap: break-word;
+    text-decoration: none;
 }
 .product p {
     font-family: 'Roboto', sans-serif;
-    font-size: 20px; /* Изменяем размер текста на 20 пикселей */
-    color: #1d1d26; /* Изменяем цвет текста на тёмно-серый */
+    font-size: 20px;
+    color: #1d1d26;
+    text-decoration: none; /* Убирает подчеркивание */
+    text-decoration: none !important;
 }
-
+.product a {
+    text-decoration: none !important;
+}
+.product a:hover {
+    text-decoration: none !important;
+}
 .product p.price {
     font-weight: bold; /* Делаем цену жирным шрифтом */
     color: #ff0000; /* Изменяем цвет цены на красный */
+    text-decoration: none !important;
 }
 .product:hover {
     background-color:#86899d;
@@ -731,41 +743,33 @@ footer {
             </table>
         </div>
     </div>
-        <section id="productsSection">
-            <div>
-                <div class="vitrina"></div>
-                <div class="products-container">
-                    <div class="product">
-                        <a href="1.html">
-                            <img src="1.webp" alt="Описание товара 1">
-                        </a>
-                        <p>Спутниковое слежение в алматы, автотранспорта,GPS мониторинг, трекер,Online - Слежение в реальном времени‎</p>
-                        <p>11 000 ₸</p>
-                    </div>
-                    <div class="product">
-                        <a href="2.html">
-                            <img src="2.webp" alt="Описание товара 2">
-                        </a>
-                        <p>GPS трекер в Алматы , мониторинг транспорта,персонала,детей</p>
-                        <p>11 000 ₸</p>
-                    </div>
-                    <div class="product">
-                        <a href="3.html">
-                            <img src="3.webp" alt="Описание товара 3">
-                        </a>
-                        <p>GPS мониторинг в Алматы, автотранспорта,GPS мониторинг, трекер,Online - Слежение в реальном времени‎</p>
-                        <p>11 000 ₸</p>
-                    </div>
-                    <div class="product">
-                        <a href="4.html">
-                            <img src="4.webp" alt="Описание товара 4">
-                        </a>
-                        <p>Спутниковый мониторинг в Алматы,</p>
-                        <p>11 000 ₸</p>
-                    </div>
-                </div>
+    <section id="productsSection">
+        <div>
+            <div class="vitrina"></div>
+            <div class="products-container">
+                <a href="1.html" class="product">
+                    <img src="1.webp" alt="Описание товара 1">
+                    <p>Спутниковое слежение в алматы, автотранспорта,GPS мониторинг, трекер,Online - Слежение в реальном времени‎</p>
+                    <p>11 000 ₸</p>
+                </a>
+                <a href="2.html" class="product">
+                    <img src="2.webp" alt="Описание товара 2">
+                    <p>GPS трекер в Алматы , мониторинг транспорта,персонала,детей</p>
+                    <p>11 000 ₸</p>
+                </a>
+                <a href="3.html" class="product">
+                    <img src="3.webp" alt="Описание товара 3">
+                    <p>GPS мониторинг в Алматы, автотранспорта,GPS мониторинг, трекер,Online - Слежение в реальном времени‎</p>
+                    <p>11 000 ₸</p>
+                </a>
+                <a href="4.html" class="product">
+                    <img src="4.webp" alt="Описание товара 4">
+                    <p>Спутниковый мониторинг в Алматы,</p>
+                    <p>11 000 ₸</p>
+                </a>
             </div>
-        </section>
+        </div>
+    </section>
     </div>
     <section id="aboutSection">
         <section id="services">
