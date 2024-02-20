@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoGps</title>
+    <link rel="icon" href="geogps.png">
+    <link rel="stylesheet" href="style.css">
+  
+</head>
+
+<body>
+    
+    <header>
+        <h3> <img src="2.png" alt=""class="img-small">  - GPS Спутниковое слежение транспорта, контроль топлива, расход топлива</h3>
+    </header>
+    <nav class="sticky-header">
+        <ul>
+            
+            <li><a href="index.html#aboutSection">О нас</a></li>
+            <li><a href="index.html#productsSection"> Витрина</a></li>
+         
+            <li><a href="Dostvkа.html">Доставка и оплата</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="description">
+            <h2>Спутниковое слежение в Алматы, автотранспорта, GPS мониторинг, трекер, Online - Слежение в реальном времени‎</h2>
+            <div class="description-container">
+                <img src="1.webp" alt="" class="descriptionimg">
+                <div class="description-text">
+                    <p class="availability">В наличии</p>
+                    <h2>11 000 ₸</h2>
+                    <p>Полный контроль топлива, сливы, заправки, передвижения, скоростного режима, времени стоянок, километража.
+                  Установка GPS приемника позволяет контролировать автомобиль.</p>
+                    <p>Устройства высокого качества, водонепроницаемые, термостойкие.
+                    Очень чувствительный приемник работает в любых погодных условиях, даже в закрытом помещении.</p>
+                    <p>Условия возврата :</p>
+                    <p>Возврат товара в течение 14 дней по договоренности</p>
+                
+            <!-- Кнопка для открытия всплывающего окна -->
+            <button onclick="openPopup()">Подробнее </button>
+
+            <div class="overlay" onclick="closePopup()"></div>
+            <div class="popup" id="popup">
+                <h2>Условия возврата и обмена</h2>
+                <p>Компания осуществляет возврат и обмен этого товара в соответствии с требованиями законодательства.</p>
+                <h2>Сроки возврата</h2>
+                <p>Возврат возможен в течение 14 дней после получения (для товаров надлежащего качества).</p>
+                <p>Обратная доставка товаров осуществляется по договоренности.</p>
+                <p>Согласно действующему законодательству вы можете вернуть товар надлежащего качества или обменять его, если: </p>
+                <ul>
+                    <li>товар не был в употреблении и не имеет следов использования потребителем: царапин, сколов, потёртостей и т.п;</li>
+                    <li>товар полностью укомплектован и сохранена фабричная упаковка;</li>
+                    <li>сохранены все ярлыки и заводская маркировка;</li>
+                    <li>товар сохраняет товарный вид и свои потребительские свойства.</li>
+                </ul>
+                <button onclick="closePopup()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+        </section>
+        <section id="characteristics">
+            <h2>Характеристики</h2>
+            <h4>Пользовательские характеристики</h4>
+            <p>автомобильное устройства GPS трекер спутниковый мониторинг слежения</p>
+            <p> автомобильное устройства</p>
+        </section>
+        
+        <section id="contacts">
+            <div class="content-container">
+                <div class="contacts-container">
+                    <h2>Контакты</h2>
+                    <p><span class="label">Компания:</span> GeoGps</p>
+                    <p><span class="label">Телефоны:</span>
+                   +7 (705) 775-44-41, +7 (700) 775-44-41</p>
+                    <p><span class="label">Контактное лицо:</span> Tahir</p>
+                    <p><span class="label">Адрес:</span>
+                       Боткина 20 уг. Казакова 21, кабинет, Алматы, Казахстан</p>
+                    <p><span class="label">Email:</span> gps1kz@mail.ru</p>
+                    <p id="workingHours" style="cursor: pointer; color: rgb(119, 48, 48); text-decoration: underline;">График работы</p>
+                    <div id="workingHoursList" style="display: none;">
+                        <table class="working-hours-table">
+                            <tr>
+                                <th>День недели</th>
+                                <th>Время работы</th>
+                            </tr>
+                            <tr>
+                                <td>Понедельник</td>
+                                <td>10:00 - 18:00</td>
+                            </tr>
+                            <tr>
+                                <td>Вторник</td>
+                                <td>10:00 - 18:00</td>
+                            </tr>
+                            <tr>
+                                <td>Среда</td>
+                                <td>10:00 - 18:00</td>
+                            </tr>
+                            <tr>
+                                <td>Четверг</td>
+                                <td>10:00 - 18:00</td>
+                            </tr>
+                            <tr>
+                                <td>Пятница</td>
+                                <td>10:00 - 18:00</td>
+                            </tr>
+                            <tr>
+                                <td>Суббота</td>
+                                <td>выходной</td>
+                            </tr>
+                            <tr>
+                                <td>Воскресенье</td>
+                                <td>выходной</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <script>
+            
+            
+                    var workingHoursList = document.getElementById("workingHoursList");
+            
+            document.getElementById("workingHours").addEventListener("mouseover", function() {
+                workingHoursList.style.display = "block";
+            });
+            
+            document.getElementById("workingHours").addEventListener("mouseout", function() {
+                workingHoursList.style.display = "none";
+            });
+            
+            workingHoursList.addEventListener("mouseover", function() {
+                workingHoursList.style.display = "block";
+            });
+            
+            workingHoursList.addEventListener("mouseout", function() {
+                workingHoursList.style.display = "none";
+            });
+                    $(document).ready(function() {
+                        $("#aboutLink").click(function() {
+                            $('html, body').animate({
+                                scrollTop: $("#aboutSection").offset().top
+                            }, 1000);
+                        });
+            
+                        $("#productsLink").click(function() {
+                            $('html, body').animate({
+                                scrollTop: $("#productsSection").offset().top
+                            }, 1000);
+                        });
+                    });
+                    
+                </script>
+        </section>
+        
+        <section id="product">
+            <h2>Описание</h2>
+            <p>Спутниковое слежение автотранспорта, мониторинг, трекер, слежение в реальном времени – все это доступно с нашими устройствами. Мы работаем на рынке GPS мониторинга более 4 лет и предоставляем качественное обслуживание своим клиентам. Наши устройства высочайшего качества, водонепроницаемые и термостойкие, с гарантией и полной технической поддержкой. Очень чувствительный приемник позволяет работать в любых погодных условиях, даже в закрытом помещении.</p>
+            <p>Спутниковое слежение автотранспорта, мониторинг, трекер, слежение в реальном времени – все это доступно с нашими устройствами. Мы работаем на рынке GPS мониторинга более 4 лет и предоставляем качественное обслуживание своим клиентам. Наши устройства высочайшего качества, водонепроницаемые и термостойкие, с гарантией и полной технической поддержкой. Очень чувствительный приемник позволяет работать в любых погодных условиях, даже в закрытом помещении.</p>
+            <p>Установка GPS приемника (трекера) позволяет контролировать автомобиль, отслеживать все его передвижения, время стоянки, скорость, километраж, превышения скорости, а также определять расход топлива. На нашем GPS сайте вы сможете просмотреть подробнейшую историю передвижения и распечатать ее в Excel за полугодовой период.</p>
+            <p>Также доступна Android версия приложения для всех планшетов и смартфонов, установка которой в подарок! В случае угона автомобиля, вы сможете видеть его местоположение на нашем GPS сайте. Мы предоставляем устройства для приобретения или аренды с установкой, настройкой, привязкой к сайту и дальнейшим обслуживанием. Наша основная задача – обеспечить владельцам транспортных средств возможность получения от спутников координат собственного местоположения и передачу этих данных посредством GPRS или SMS в режиме реального времени.</p>
+        </section>
+       
+    </main>
+    
+    <footer>
+        <p>© 2024 Все права защищены</p>
+    </footer>
+
+    <script>
+        // Функция для открытия всплывающего окна
+        function openPopup() {
+            document.getElementById('popup').style.display = 'block';
+            document.querySelector('.overlay').style.display = 'block';
+        }
+
+        // Функция для закрытия всплывающего окна
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.querySelector('.overlay').style.display = 'none';
+        }
+    </script>
+    
+</body>
+
+</html>

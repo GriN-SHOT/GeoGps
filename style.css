@@ -1,0 +1,297 @@
+html{width:100%; height:100%; overflow-x:hidden}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+body {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  color: rgba(23, 23, 45, 0.907);
+}
+.descriptionimg {
+  width: 50%; /* Ширина изображения */
+  height:  50%; /* Высота изображения */
+  margin: 10px; /* Отступы вокруг изображения */
+  border-radius: 5px; /* Скругление углов */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень */
+}
+.description-container {
+  display: flex;
+  align-items: center;
+}
+@media only screen and (max-width: 600px) {
+  .description-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.descriptionimg {
+    flex: 1 0 100%; /* Изображение будет занимать всю доступную ширину */
+    max-width: 100%; /* Но не будет превышать своего оригинального размера */
+    margin-bottom: 10px; /* Отступ между изображением и текстом */
+}
+
+.description-text {
+    flex: 1 0 100%; /* Текст будет занимать всю доступную ширину */
+    margin-left: 0; /* Отменяет отступ слева */
+}
+
+}
+
+.descriptionimg {
+  width: 50%;
+  height: auto;
+  margin-right: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.description-text {
+  flex-grow: 1; /* Растягиваем блок с текстом на всё доступное пространство */
+  color: rgba(20, 20, 38, 0.907);
+}
+#product p1 {
+ 
+  font-size: 19px;
+    
+  margin-bottom: 0.5vw;
+  margin-top: 15px;
+  text-indent: 20px;
+  right: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: rgba(15, 12, 34, 0.907);
+}
+body.fade-out {
+  opacity: 0;
+}
+header {
+  font-family: 'Times New Roman', serif;
+  background-color: #30323d;
+  color: #eeeffc;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 20px;
+}
+.img-container {
+  text-align: center; /* Выравниваем содержимое по центру */
+}
+.description-container {
+  display: flex;
+  align-items: center;
+}
+
+.description-container .description-text {
+  margin-left: 1.5vw; /* Добавляем отступ слева */
+}
+
+.description-container p.availability {
+  color: green; /* Цвет текста зеленый */
+  margin-bottom: 10%; /* Уменьшаем отступ снизу */
+}
+
+.descriptionimg {
+  width: 60%;
+  height: auto;
+  margin-right: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.availability {
+  background-color: lightgreen; /* Цвет фона для текста */
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.img-small {
+  width: 10%; /* Устанавливаем ширину 10% */
+  height: auto; /* Автоматически рассчитываем высоту для сохранения пропорций */
+  display: inline-block; /* Размещаем изображение в строку */
+  vertical-align: middle; /* Выравниваем по вертикали по центру */
+}
+
+h3 {
+  display: inline-block; /* Размещаем текст в строку */
+  margin-left: 10px; /* Добавляем небольшой отступ слева от изображения */
+  vertical-align: middle; /* Выравниваем по вертикали по центру */
+}
+header h1 {
+  font-size: 24px;
+  color: #e9d3d3; /* Цвет текста */
+  margin-bottom: 10px; /* Отступ снизу */
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.612); /* Тень текста */
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+footer {
+  background-color: #31333c;
+color: #fff;
+text-align: center;
+padding: 10px 0;
+
+}
+.popup {
+  font-family: 'Times New Roman', serif;
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #f8f7ff;
+  border: 7px solid #6b6c7c;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(38, 36, 40, 0.5);
+  z-index: 1000;
+  max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
+  font-size: 20px;
+  color: #1b1a26;
+}
+.sticky-header {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  background-color: rgba(55, 63, 78, 0.696); /* Прозрачный белый цвет для размытого эффекта */
+  backdrop-filter: blur(10px); /* Размытие фона */
+  z-index: 1000; /* Чтобы оставался выше других элементов */
+  padding: 10px 20px; /* Добавьте отступы по вашему усмотрению */
+}
+
+nav {
+  background-color: #3e3d49;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+  
+}
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Стили для затемненного фона вокруг всплывающего окна */
+.overlay {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+.popup ul {
+ 
+  padding-left: 30px;
+  margin-top: -1px; /* Уменьшаем отступ сверху */
+}
+#product p {
+  font-family: 'Times New Roman', serif;
+  font-size: 20px;
+  background-color: #f2f2fd;
+  margin-bottom: 0.5vw;
+  margin-top: 15px;
+  text-indent: 20px;
+  right: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: rgba(20, 20, 38, 0.907);
+}
+
+button {
+  
+  padding: 0.5rem 1rem;
+  background-color: #2b324a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+button:hover {
+  background-color: #4a4962;
+}
+.working-hours-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.working-hours-table th, .working-hours-table td {
+  border: 1px solid #b0b2bf;
+  padding: 8px;
+  text-align: left;
+}
+
+.working-hours-table th {
+  background-color: #30323d;
+  color: #fff;
+}
+
+.working-hours-table td {
+  color: #191a20;
+}
+.label {
+  font-weight: bold; /* Жирный шрифт для выделения текста */
+  text-decoration: underline; /* Подчеркивание текста */
+}
+#characteristics {
+  background-color: #f9f9f9; /* Цвет фона */
+  padding: 20px; /* Внутренние отступы */
+  margin-top: 20px; /* Внешний отступ сверху */
+  border-radius: 5px; /* Скругление углов */
+}
+
+#characteristics h3 {
+  color: rgba(23, 23, 45, 0.907);
+}
+
+#characteristics h4 {
+  
+  margin-top: 10px; /* Внешний отступ сверху */
+}
+
+#characteristics p {
+  color: rgba(31, 31, 50, 0.907);
+  line-height: 1.5; /* Межстрочный интервал */
+  font-size: 17px;
+  background-color: #efefef;
+
+  margin-bottom: 0.5vw;
+  margin-top: 15px;
+  text-indent: 20px;
+  right:  100px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid rgba(41, 40, 52, 0.48);
+  border-radius: 6px;
+}

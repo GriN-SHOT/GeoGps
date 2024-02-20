@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoGps</title>
+    <link rel="icon" href="geogps.png">
+    <link rel="stylesheet" href="style.css">
+  <style>
+
+
+html {
+    
+  scroll-behavior: smooth;
+}
+html{
+    width:100%;
+     height:100%;
+      overflow-x:hidden
+      
+}
+.descriptionimg {
+  width: 50%; /* Ширина изображения */
+  height:  50%; /* Высота изображения */
+  margin: 10px; /* Отстуrgba(168, 153, 153, 0.1)ния */
+  border-radius: 5px; /* Скругление углов */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень */
+}
+.description-container {
+  display: flex;
+  align-items: center;
+}
+
+.descriptionimg {
+  width: 50%;
+  height: auto;
+  margin-right: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.description-text {
+    color: rgba(31, 31, 50, 0.907);
+  line-height: 1.5; /* Межстрочный интервал */
+
+  background-color: #f5f5f8;
+
+
+  right:  100px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  border-radius: 6px;
+  flex-grow: 1; /* Растягиваем блок с текстом на всё доступное пространство */
+  color: rgba(20, 20, 38, 0.907);
+}
+
+body.fade-out {
+  opacity: 0;
+}
+header {
+  font-family: 'Times New Roman', serif;
+  background-color: #30323d;
+  color: #eeeffc;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 20px;
+}
+.img-container {
+  text-align: center; /* Выравниваем содержимое по центру */
+}
+.description-container {
+  display: flex;
+  align-items: center;
+}
+
+.description-container .description-text {
+  margin-left: 1.5vw; /* Добавляем отступ слева */
+}
+
+.description-container p.availability {
+  color: green; /* Цвет текста зеленый */
+  margin-bottom: 10%; /* Уменьшаем отступ снизу */
+}
+
+.descriptionimg {
+  width: 40%;
+  height: auto;
+  margin-right: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.availability {
+  background-color: lightgreen; /* Цвет фона для текста */
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.img-small {
+  width: 10%; /* Устанавливаем ширину 10% */
+  height: auto; /* Автоматически рассчитываем высоту для сохранения пропорций */
+  display: inline-block; /* Размещаем изображение в строку */
+  vertical-align: middle; /* Выравниваем по вертикали по центру */
+}
+
+h3 {
+  display: inline-block; /* Размещаем текст в строку */
+  margin-left: 10px; /* Добавляем небольшой отступ слева от изображения */
+  vertical-align: middle; /* Выравниваем по вертикали по центру */
+}
+header h1 {
+  font-size: 24px;
+  color: #e9d3d3; /* Цвет текста */
+  margin-bottom: 10px; /* Отступ снизу */
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.612); /* Тень текста */
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+footer {
+  background-color: #31333c;
+color: #fff;
+text-align: center;
+padding: 10px 0;
+
+}
+.popup {
+  font-family: 'Times New Roman', serif;
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #f8f7ff;
+  border: 7px solid #6b6c7c;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(38, 36, 40, 0.5);
+  z-index: 1000;
+  max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
+  font-size: 20px;
+  color: #1b1a26;
+}
+.sticky-header {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  background-color: rgba(55, 63, 78, 0.696); /* Прозрачный белый цвет для размытого эффекта */
+  backdrop-filter: blur(10px); /* Размытие фона */
+  z-index: 1000; /* Чтобы оставался выше других элементов */
+  padding: 10px 20px; /* Добавьте отступы по вашему усмотрению */
+}
+
+nav {
+  background-color: #3e3d49;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+  
+}
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Стили для затемненного фона вокруг всплывающего окна */
+.overlay {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+.popup ul {
+ 
+  padding-left: 30px;
+  margin-top: -1px; /* Уменьшаем отступ сверху */
+}
+#product p {
+  font-family: 'Times New Roman', serif;
+  font-size: 20px;
+  background-color: #f2f2fd;
+  margin-bottom: 0.5vw;
+  margin-top: 15px;
+  text-indent: 20px;
+  right: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: rgba(20, 20, 38, 0.907);
+}
+#product p1 {
+ 
+  font-size: 19px;
+    
+  margin-bottom: 0.5vw;
+  margin-top: 15px;
+  text-indent: 20px;
+  right: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: rgba(15, 12, 34, 0.907);
+}
+#product h1 {
+    
+ font-size: 26px;
+ 
+}
+button {
+  
+  padding: 0.5rem 1rem;
+  background-color: #2b324a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+button:hover {
+  background-color: #4a4962;
+}
+.working-hours-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.working-hours-table th, .working-hours-table td {
+  border: 1px solid #b0b2bf;
+  padding: 8px;
+  text-align: left;
+}
+
+.working-hours-table th {
+  background-color: #30323d;
+  color: #fff;
+}
+
+.working-hours-table td {
+  color: #191a20;
+}
+.label {
+  font-weight: bold; /* Жирный шрифт для выделения текста */
+  text-decoration: underline; /* Подчеркивание текста */
+}
+#characteristics {
+  background-color: #f9f9f9; /* Цвет фона */
+  padding: 20px; /* Внутренние отступы */
+  margin-top: 20px; /* Внешний отступ сверху */
+  border-radius: 5px; /* Скругление углов */
+}
+
+#characteristics h3 {
+  color: rgba(23, 23, 45, 0.907);
+}
+
+#characteristics h4 {
+  
+  margin-top: 10px; /* Внешний отступ сверху */
+}
+
+#characteristics p {
+  color: rgba(31, 31, 50, 0.907);
+  line-height: 1.5; /* Межстрочный интервал */
+  font-size: 17px;
+  background-color: #efefef;
+
+  margin-bottom: 0.5vw;
+  margin-top: 15px;
+  text-indent: 20px;
+  right:  100px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid rgba(41, 40, 52, 0.48);
+  border-radius: 6px;
+}
+@media only screen and (max-width: 600px) {
+    #product p {
+        font-size: 16px;
+    }
+    #product p1{
+        font-size: 19px;
+    }
+    #product h1 {
+        font-size: 25px;
+    }
+  body {
+    padding: 0 10px; /* Добавляем отступы по бокам */
+  }
+  .description-text {
+    right: auto; /* Сбрасываем выравнивание */
+    padding: 10px; /* Увеличиваем отступы внутри блока */
+  }
+  .description-text {
+    padding: 5px; /* Уменьшаем внутренние отступы */
+    font-size: 12px; /* Уменьшаем размер шрифта */
+  }
+  .description-text p {
+    margin-bottom: 5px; /* Уменьшаем отступ между параграфами */
+  }
+  .popup {
+    font-size: 16px; /* Уменьшаем размер шрифта во всплывающем окне */
+    padding: 10px; /* Уменьшаем отступы во всплывающем окне */
+  }
+  #description h2 {
+    font-size: 18px; /* Уменьшаем размер шрифта */
+  }
+  header {
+  width: 110%; /* Увеличиваем ширину на 10% */
+  margin-left: -5%; /* Сдвигаем влево на 5% (половина увеличения) */
+  font-size: 14px;
+  
+}
+header h3 {
+    margin-left: 30px; /* Верхний отступ */
+    margin-bottom: 10px; /* Нижний отступ */
+    text-align: center; /* Центрирование текста */
+}
+/* Растягиваем нижнюю часть сайта */
+footer {
+  width: 110%; /* Увеличиваем ширину на 10% */
+  margin-left: -5%; /* Сдвигаем влево на 5% (половина увеличения) */
+}
+.sticky-header {
+    width: 100%; /* Увеличиваем ширину на 10% */
+  margin-left: -5%; /* Сдвигаем влево на 5% (половина увеличения) */
+}
+}
+  </style>
+</head>
+
+<body>
+    
+    <header>
+        <h3> <img src="2.png" alt=""class="img-small">  - GPS Спутниковое слежение транспорта, контроль топлива, расход топлива</h3>
+    </header>
+    <nav class="sticky-header">
+        <ul>
+            
+            <li><a href="index.html#aboutSection">О нас</a></li>
+            <li><a href="index.html#productsSection"> Витрина</a></li>
+         
+            <li><a href="Dostvkа.html">Доставка и оплата</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="description">
+            <h2>Спутниковый мониторинг в Алматы
+            </h2>
+            <div class="description-container">
+                <img src="4.webp" alt="" class="descriptionimg">
+                <div class="description-text">
+                    <p class="availability">В наличии</p>
+                    <h2>11 000 ₸</h2>
+                    <p>GPS трекер в Алматы , мониторинг транспорта,персонала,детей</p>
+                    <p>Устройства высокого качества, водонепроницаемые, термостойкие.
+                    Очень чувствительный приемник работает в любых погодных условиях, даже в закрытом помещении.</p>
+                    <p>Условия возврата :</p>
+                    <p>Возврат товара в течение 14 дней по договоренности</p>
+                
+            <!-- Кнопка для открытия всплывающего окна -->
+            <button onclick="openPopup()">Подробнее </button>
+
+            <div class="overlay" onclick="closePopup()"></div>
+            <div class="popup" id="popup">
+                <h2>Условия возврата и обмена</h2>
+                <p>Компания осуществляет возврат и обмен этого товара в соответствии с требованиями законодательства.</p>
+                <h2>Сроки возврата</h2>
+                <p>Возврат возможен в течение 14 дней после получения (для товаров надлежащего качества).</p>
+                <p>Обратная доставка товаров осуществляется по договоренности.</p>
+                <p>Согласно действующему законодательству вы можете вернуть товар надлежащего качества или обменять его, если: </p>
+                <ul>
+                    <li>товар не был в употреблении и не имеет следов использования потребителем: царапин, сколов, потёртостей и т.п;</li>
+                    <li>товар полностью укомплектован и сохранена фабричная упаковка;</li>
+                    <li>сохранены все ярлыки и заводская маркировка;</li>
+                    <li>товар сохраняет товарный вид и свои потребительские свойства.</li>
+                </ul>
+                <button onclick="closePopup()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+        </section>
+       
+        <section id="product">
+            <h1>Описание</h1>
+            <p1>Полный контроль топлива сливы заправки, передвижения, скоростной режим, время стоянок, километраж</p1>
+            <p>Многие компании установили наши трекеры (приемники), включая транспортные организации, такси, компании по доставке грузов и товаров, дальнобойщиков и частные лица. На рынке GPS мониторинга мы работаем с 2010 года. Мы предоставляем качественное обслуживание своих клиентов и полную техническую поддержку! </p>
+           <p1>Устройства высокого качества</p1>
+            <p>Наши устройства высокого качества, водонепроницаемые, термостойкие, с гарантией и техническим обслуживанием. Очень чувствительный приемник позволяет работать в любых погодных условиях, даже в закрытых помещениях. Здесь можно просмотреть видео с нашего GPS сайта.</p>
+<p1>Установка и функциональность</p1>
+<p>Установка GPS приемника (трекера) позволяет контролировать автомобиль, все его передвижения, время стоянки, скорость, километраж, превышения скорости. По расстоянию можно определить расход топлива. На GPS сайте можно просмотреть подробнейшую историю передвижения, распечатать в Excel за полугодовой период. Также имеется АНДРОЙД версия для всех планшетов и смартфонов, установка в подарок! В случае угона автомобиля можно видеть его местоположение на GPS сайте.</p>
+               </section>
+        <section id="contacts">
+            <div class="content-container">
+                <div class="contacts-container">
+                    <h2>Контакты</h2>
+                    <p><span class="label">Компания:</span> GeoGps</p>
+                    <p><span class="label">Телефоны:</span>
+                   +7 (705) 775-44-41, +7 (700) 775-44-41</p>
+                    <p><span class="label">Контактное лицо:</span> Tahir</p>
+                    <p><span class="label">Адрес:</span>
+                       Боткина 20 уг. Казакова 21, кабинет, Алматы, Казахстан</p>
+                    <p><span class="label">Email:</span> gps1kz@mail.ru</p>
+                    <p id="workingHours" style="cursor: pointer; color: rgb(119, 48, 48); text-decoration: underline;">График работы</p>
+                    <div id="workingHoursList" style="display: none;">
+                        <table class="working-hours-table">
+                            <tr>
+                                <th>День недели</th>
+                                <th>Время работы</th>
+                            </tr>
+                            <tr>
+                                <td>Понедельник</td>
+                                <td>10:00 - 18:00</td>
+                            </tr>
+                            <tr>
+                                <td>Вторник</td>
+                                <td>10:00 - 18:00</td>
+                            </tr>
+                            <tr>
+                                <td>Среда</td>
+                                <td>10:00 - 18:00</td>
+                            </tr>
+                            <tr>
+                                <td>Четверг</td>
+                                <td>10:00 - 18:00</td>
+                            </tr>
+                            <tr>
+                                <td>Пятница</td>
+                                <td>10:00 - 18:00</td>
+                            </tr>
+                            <tr>
+                                <td>Суббота</td>
+                                <td>выходной</td>
+                            </tr>
+                            <tr>
+                                <td>Воскресенье</td>
+                                <td>выходной</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <script>
+            
+            
+                    var workingHoursList = document.getElementById("workingHoursList");
+            
+            document.getElementById("workingHours").addEventListener("mouseover", function() {
+                workingHoursList.style.display = "block";
+            });
+            
+            document.getElementById("workingHours").addEventListener("mouseout", function() {
+                workingHoursList.style.display = "none";
+            });
+            
+            workingHoursList.addEventListener("mouseover", function() {
+                workingHoursList.style.display = "block";
+            });
+            
+            workingHoursList.addEventListener("mouseout", function() {
+                workingHoursList.style.display = "none";
+            });
+                    $(document).ready(function() {
+                        $("#aboutLink").click(function() {
+                            $('html, body').animate({
+                                scrollTop: $("#aboutSection").offset().top
+                            }, 1000);
+                        });
+            
+                        $("#productsLink").click(function() {
+                            $('html, body').animate({
+                                scrollTop: $("#productsSection").offset().top
+                            }, 1000);
+                        });
+                    });
+                    
+                </script>
+        </section>
+        
+       
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Компания:GeoGps . Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Функция для открытия всплывающего окна
+        function openPopup() {
+            document.getElementById('popup').style.display = 'block';
+            document.querySelector('.overlay').style.display = 'block';
+        }
+
+        // Функция для закрытия всплывающего окна
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.querySelector('.overlay').style.display = 'none';
+        }
+    </script>
+    <script src="assets/js/smooth-on-scroll.js"></script>
+    <script src="assets/js/smooth-scroll.js"></script>
+
+</body>
+
+</html>

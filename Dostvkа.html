@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoGps</title>
+    <link rel="icon" href="geogps.png">
+    <link rel="stylesheet" href="style.css">
+  <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f8; /* Изменение цвета фона */
+            color: #1b1f30;
+        }
+        header {
+            font-family: 'Times New Roman', serif;
+            background-color: #30323d;
+            color: #eeeffc;
+            text-align: center;
+            padding: 20px 0; /* Изменение верхнего и нижнего отступов */
+            font-size: 24px; /* Увеличение размера шрифта */
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 20px; /* Увеличение размера шрифта */
+        }
+        footer {
+  background-color: #31333c;
+color: #fff;
+text-align: center;
+padding: 10px 0;
+
+}
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff; /* Изменение цвета фона */
+            border-radius: 10px; /* Добавление скругления углов */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавление тени */
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1b1a26; /* Изменение цвета текста */
+        }
+        h2 {
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #1b1a26; /* Изменение цвета текста */
+        }
+        .working-hours-table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .working-hours-table th, .working-hours-table td {
+            border: 1px solid #b0b2bf;
+            padding: 8px;
+            text-align: left;
+        }
+        .working-hours-table th {
+            background-color: #30323d;
+            color: #fff;
+        }
+        .working-hours-table td {
+            color: #191a20;
+        }
+        .label {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        #characteristics {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        #characteristics h3 {
+            color: #1b1a26;
+        }
+        #characteristics h4 {
+            margin-top: 10px;
+        }
+        #characteristics p {
+            color: #1b1a26;
+            line-height: 1.5;
+            font-size: 17px;
+            background-color: #efefef;
+            margin-bottom: 15px; /* Увеличение отступа снизу */
+            padding: 10px;
+            border: 1px solid rgba(41, 40, 52, 0.48);
+            border-radius: 6px;
+        }
+        @media only screen and (max-width: 600px) {
+            header {
+                font-size: 18px;
+            }
+            nav ul li a {
+                font-size: 16px;
+            }
+        }
+     .contacts-container {
+    max-width: 600px; /* Задайте нужную ширину контейнера */
+    margin: 0 auto; /* Центрирование контейнера по горизонтали */
+    padding: 20px; /* Поля внутри контейнера */
+    background-color: #f9f9f9; /* Цвет фона контейнера */
+    border-radius: 5px; /* Скругление углов */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень контейнера */
+    color: #1b1f30;
+}
+
+.contacts-container h2 {
+    text-align: center; /* Выравнивание заголовка по центру */
+    margin-bottom: 20px; /* Отступ снизу заголовка */
+    color: #1b1a26; /* Цвет текста заголовка */
+}
+
+.contacts-container p {
+    color: #1b1a26; /* Цвет текста контактной информации */
+}
+
+.contacts-container .label {
+    font-weight: bold; /* Жирный шрифт для меток */
+    text-decoration: underline; /* Подчеркивание для меток */
+}
+
+.contacts-container #workingHours {
+    cursor: pointer; /* Изменение курсора при наведении на текст */
+    color: rgb(119, 48, 48); /* Цвет текста ссылки */
+    text-decoration: underline; /* Подчеркивание для ссылки */
+}
+
+.contacts-container #workingHoursList {
+    display: none; /* Скрытие таблицы графика работы по умолчанию */
+}
+
+.contacts-container #workingHoursList table {
+    border-collapse: collapse; /* Схлопывание границ таблицы */
+    width: 100%; /* Ширина таблицы */
+}
+
+.contacts-container #workingHoursList th,
+.contacts-container #workingHoursList td {
+    border: 1px solid #b0b2bf; /* Границы ячеек таблицы */
+    padding: 8px; /* Отступ внутри ячеек таблицы */
+    text-align: left; /* Выравнивание текста по левому краю */
+}
+
+.contacts-container #workingHoursList th {
+    background-color: #30323d; /* Цвет фона заголовков таблицы */
+    color: #fff; /* Цвет текста заголовков таблицы */
+}
+
+
+.contacts-container h2 {
+    text-align: center; /* Выравнивание заголовка по центру */
+    margin-bottom: 20px; /* Отступ снизу заголовка */
+    color: #1b1a26; /* Цвет текста заголовка */
+}
+
+.contacts-container p {
+    color: #1b1a26; /* Цвет текста контактной информации */
+}
+
+.contacts-container .label {
+    font-weight: bold; /* Жирный шрифт для меток */
+    text-decoration: underline; /* Подчеркивание для меток */
+}
+
+.contacts-container #workingHours {
+    cursor: pointer; /* Изменение курсора при наведении на текст */
+    color: rgb(119, 48, 48); /* Цвет текста ссылки */
+    text-decoration: underline; /* Подчеркивание для ссылки */
+}
+
+.contacts-container #workingHoursList {
+    display: none; /* Скрытие таблицы графика работы по умолчанию */
+}
+
+.contacts-container #workingHoursList table {
+    border-collapse: collapse; /* Схлопывание границ таблицы */
+    width: 100%; /* Ширина таблицы */
+}
+
+.contacts-container #workingHoursList th,
+.contacts-container #workingHoursList td {
+    border: 1px solid #b0b2bf; /* Границы ячеек таблицы */
+    padding: 8px; /* Отступ внутри ячеек таблицы */
+    text-align: left; /* Выравнивание текста по левому краю */
+}
+
+.contacts-container #workingHoursList th {
+    background-color: #30323d; /* Цвет фона заголовков таблицы */
+    color: #fff; /* Цвет текста заголовков таблицы */
+}
+
+    </style>
+  </style>
+</head>
+
+<body>
+    
+    <header>
+        <h3> <img src="2.png" alt=""class="img-small">  - GPS Спутниковое слежение транспорта, контроль топлива, расход топлива</h3>
+    </header>
+    <nav class="sticky-header">
+        <ul>
+            
+            <li><a href="index.html#aboutSection">О нас</a></li>
+            <li><a href="index.html#productsSection"> Витрина</a></li>
+         
+          
+        </ul>
+    </nav>
+   
+        
+        <div class="container">
+            <h1>Условия доставки и оплаты</h1>
+            <h2>Способы доставки</h2>
+            <ul>
+              <li>Доставка курьером</li>
+              <li>Транспортная компания</li>
+            </ul>
+            <h2>Способы оплаты</h2>
+            <ul>
+              <li>КазКом</li>
+              <li>VISA</li>
+              <li>4177797144846052</li>
+              <li>Наличными</li>
+              <li>Безналичный расчет</li>
+            </ul>
+            <div class="regions">
+              <h2>Регионы доставки</h2>
+              <ul>
+                <li>Армения, все регионы</li>
+                <li>Азербайджан, все регионы</li>
+                <li>Беларусь, все регионы</li>
+                <li>Грузия, все регионы</li>
+                <li>Казахстан:</li>
+                <ul>
+                  <li>Акмолинская область:</li>
+                  <ul>
+                    <li>Астана</li>
+                  </ul>
+                  <li>Актюбинская область</li>
+                  <li>Алматинская область:</li>
+                  <ul>
+                    <li>Алматы</li>
+                  </ul>
+                  <li>Атырауская область</li>
+                  <li>Восточно-Казахстанская область</li>
+                  <li>Жамбылская область</li>
+                  <li>Западно-Казахстанская область</li>
+                  <li>Карагандинская область</li>
+                  <li>Костанайская область</li>
+                  <li>Кызылординская область</li>
+                  <li>Мангистауская область</li>
+                  <li>Павлодарская область</li>
+                  <li>Северо-Казахстанская область</li>
+                  <li>Туркестанская область</li>
+                </ul>
+                <li>Молдова, все регионы</li>
+                <li>Россия, все регионы</li>
+                <li>Таджикистан, все регионы</li>
+                <li>Туркменистан, все регионы</li>
+                <li>Украина, все регионы</li>
+                <li>Узбекистан, все регионы</li>
+              </ul>
+           
+          <section id="contacts">
+            <div class="content-container">
+                <div class="contacts-container">
+                    <h2>Контакты</h2>
+                    <p><span class="label">Компания:</span> GeoGps</p>
+                    <p><span class="label">Телефоны:</span>
+                   +7 (705) 775-44-41, +7 (700) 775-44-41</p>
+                    <p><span class="label">Контактное лицо:</span> Tahir</p>
+                    <p><span class="label">Адрес:</span>
+                       Боткина 20 уг. Казакова 21, кабинет, Алматы, Казахстан</p>
+                    <p><span class="label">Email:</span> gps1kz@mail.ru</p>
+                    <p id="workingHours" style="cursor: pointer; color: rgb(119, 48, 48); text-decoration: underline;">График работы</p>
+                    <div id="workingHoursList" style="display: none;">
+                        <table class="working-hours-table">
+                            <tr>
+                                <th>День недели</th>
+                                <th>Время работы</th>
+                            </tr>
+                            <tr>
+                                <td>Понедельник</td>
+                                <td>10:00 - 18:00</td>
+                            </tr>
+                            <tr>
+                                <td>Вторник</td>
+                                <td>10:00 - 18:00</td>
+                            </tr>
+                            <tr>
+                                <td>Среда</td>
+                                <td>10:00 - 18:00</td>
+                            </tr>
+                            <tr>
+                                <td>Четверг</td>
+                                <td>10:00 - 18:00</td>
+                            </tr>
+                            <tr>
+                                <td>Пятница</td>
+                                <td>10:00 - 18:00</td>
+                            </tr>
+                            <tr>
+                                <td>Суббота</td>
+                                <td>выходной</td>
+                            </tr>
+                            <tr>
+                                <td>Воскресенье</td>
+                                <td>выходной</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <script>
+            
+            
+                    var workingHoursList = document.getElementById("workingHoursList");
+            
+            document.getElementById("workingHours").addEventListener("mouseover", function() {
+                workingHoursList.style.display = "block";
+            });
+            
+            document.getElementById("workingHours").addEventListener("mouseout", function() {
+                workingHoursList.style.display = "none";
+            });
+            
+            workingHoursList.addEventListener("mouseover", function() {
+                workingHoursList.style.display = "block";
+            });
+            
+            workingHoursList.addEventListener("mouseout", function() {
+                workingHoursList.style.display = "none";
+            });
+                    $(document).ready(function() {
+                        $("#aboutLink").click(function() {
+                            $('html, body').animate({
+                                scrollTop: $("#aboutSection").offset().top
+                            }, 1000);
+                        });
+            
+                        $("#productsLink").click(function() {
+                            $('html, body').animate({
+                                scrollTop: $("#productsSection").offset().top
+                            }, 1000);
+                        });
+                    });
+                    
+                </script>
+        </div>
+    </div>
+    </main>
+    
+    
+
+    <script>
+        // Функция для открытия всплывающего окна
+        function openPopup() {
+            document.getElementById('popup').style.display = 'block';
+            document.querySelector('.overlay').style.display = 'block';
+        }
+
+        // Функция для закрытия всплывающего окна
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.querySelector('.overlay').style.display = 'none';
+        }
+    </script>
+    <script src="assets/js/smooth-on-scroll.js"></script>
+    <script src="assets/js/smooth-scroll.js"></script>
+
+</body>
+
+</html>
