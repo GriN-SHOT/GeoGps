@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html data-theme="dark" lang="ru">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   GeoGps — GPS/ГЛОНАСС мониторинг транспорта в Казахстане
+  </title>
+  <meta content="GeoGps — GPS/ГЛОНАСС мониторинг транспорта в Казахстане: контроль маршрутов, топлива, геозоны, отчёты, уведомления и управление автопарком." name="description"/>
+  <link href="https://api.fontshare.com" rel="preconnect"/>
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&amp;f[]=cabinet-grotesk@500,700,800&amp;display=swap" rel="stylesheet"/>
+  <style>
+   :root,[data-theme="light"]{--text-xs:clamp(.75rem,.72rem + .18vw,.875rem);--page-bg:radial-gradient(circle at top left, rgba(11,110,115,.05), transparent 22%),radial-gradient(circle at top right, rgba(19,49,71,.04), transparent 18%),linear-gradient(180deg,#faf8f3 0%,#f4f0e7 46%,#eee8dc 100%);--text-sm:clamp(.875rem,.84rem + .24vw,1rem);--text-base:clamp(1rem,.97rem + .24vw,1.125rem);--text-lg:clamp(1.125rem,1.03rem + .6vw,1.5rem);--text-xl:clamp(1.5rem,1.15rem + 1.4vw,2.25rem);--text-2xl:clamp(2.1rem,1.4rem + 2.6vw,4.5rem);--space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;--space-12:3rem;--space-16:4rem;--space-20:5rem;--space-24:6rem;--color-bg:#f8f6f0;--color-surface:rgba(255,252,247,.90);--color-surface-2:#f3eee5;--color-surface-3:#ebe4d8;--color-text:#20231f;--color-text-muted:#666b63;--color-text-faint:#8f958d;--color-border:rgba(32,35,31,.09);--color-divider:rgba(32,35,31,.07);--color-primary:#0b6e73;--color-primary-hover:#09595d;--color-secondary:#133147;--color-accent:#ddf0ee;--shadow-sm:0 8px 18px rgba(10,16,24,.05);--shadow-md:0 18px 42px rgba(10,16,24,.09);--shadow-lg:0 30px 78px rgba(10,16,24,.13);--radius-sm:.5rem;--radius-md:.85rem;--radius-lg:1.25rem;--radius-xl:1.75rem;--radius-full:999px;--content:1200px;--font-body:'Satoshi','Inter',sans-serif;--font-display:'Cabinet Grotesk','Satoshi',sans-serif}
+    [data-theme="dark"]{--page-bg:radial-gradient(circle at top left, rgba(99,212,191,.14), transparent 24%),radial-gradient(circle at top right, rgba(104,140,255,.1), transparent 20%),linear-gradient(180deg,#0b1419 0%,#091116 45%,#091217 100%);--color-bg:#091217;--color-surface:#101a20;--color-surface-2:#13242c;--color-surface-3:#19313a;--color-text:#edf3ef;--color-text-muted:#aab9b4;--color-text-faint:#74837d;--color-border:rgba(255,255,255,.1);--color-divider:rgba(255,255,255,.08);--color-primary:#63d4bf;--color-primary-hover:#4dbca8;--color-secondary:#d8e9ff;--color-accent:#173330;--shadow-sm:0 2px 10px rgba(0,0,0,.22);--shadow-md:0 18px 45px rgba(0,0,0,.3);--shadow-lg:0 32px 90px rgba(0,0,0,.44)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{-webkit-text-size-adjust:none;text-size-adjust:none;scroll-behavior:smooth;scroll-padding-top:92px}body{min-height:100dvh;font-family:var(--font-body);font-size:var(--text-base);line-height:1.6;background:var(--page-bg);color:var(--color-text);overflow-x:hidden;transition:background .55s ease,color .45s ease}img,svg{display:block;max-width:100%;height:auto}a{text-decoration:none;color:inherit}button,input,textarea,select{font:inherit;color:inherit}button{cursor:pointer;background:none;border:none}:focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm)}
+    html,body,.site-header,.card,.theme-toggle,.btn,.btn.secondary,.pill,.eyebrow,.hero-visual,.hero-screen,.hero-side,.telemetry-card,.product-media,.transport-image,.field input,.field textarea,.field select,.transport-card,.benefit-card,.product-card,.proof-card,.contact-panel,.stat,.kpi,.brand-mark{transition:background-color .45s ease,border-color .45s ease,color .35s ease,box-shadow .45s ease,transform .25s ease,filter .45s ease,opacity .35s ease} .site-header{transition:background-color .45s ease,border-color .45s ease,backdrop-filter .45s ease}.map-grid,.hero-visual::before,.benefit-card::after,.proof-card::after{transition:opacity .45s ease,background .45s ease} .skip-link{position:absolute;left:-9999px}.skip-link:focus{left:1rem;top:1rem;z-index:999;background:var(--color-primary);color:#052220;padding:.75rem 1rem;border-radius:var(--radius-md)}.container{width:min(calc(100% - 2rem),var(--content));margin-inline:auto}.section{padding-block:clamp(var(--space-12),8vw,var(--space-24))}.site-header{position:sticky;top:0;z-index:100;background:color-mix(in srgb, var(--color-bg) 82%, transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--color-divider)}[data-theme="light"] .site-header{background:rgba(250,248,243,.82)}.nav-wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 0}.brand{display:flex;align-items:center;gap:.9rem}.brand-mark{width:2.9rem;height:2.9rem;border-radius:1rem;background:linear-gradient(135deg,var(--color-primary),#b8fff3);color:#06211f;display:grid;place-items:center;box-shadow:var(--shadow-md)}.brand-mark svg{width:1.45rem;height:1.45rem}.brand strong{display:block;font-weight:900;line-height:1}.brand small{display:block;font-size:.8rem;color:var(--color-text-muted)}.nav{display:flex;gap:1.1rem;flex-wrap:wrap;color:var(--color-text-muted);font-size:var(--text-sm)}.nav a:hover{color:var(--color-text)}.nav-actions{display:flex;align-items:center;gap:.75rem}.theme-toggle{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--color-border);background:rgba(255,255,255,.03)}[data-theme="light"] .theme-toggle{background:rgba(255,255,255,.56)}.btn{display:inline-flex;align-items:center;justify-content:center;gap:.65rem;min-height:48px;padding:.95rem 1.2rem;border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:900;letter-spacing:.01em;border:1px solid rgba(255,255,255,.22);transition:transform .22s ease, background .22s ease, border-color .22s ease, box-shadow .22s ease, color .22s ease;background:linear-gradient(135deg,#0d7f79 0%,#12948d 42%,#26aaa1 74%,#66d0c7 100%);color:#f1fffe;box-shadow:0 14px 30px rgba(13,127,121,.26), inset 0 1px 0 rgba(255,255,255,.14)}.btn:hover{transform:translateY(-2px);background:linear-gradient(135deg,#0b706b 0%,#10857f 42%,#209c94 74%,#58c5bd 100%);box-shadow:0 18px 38px rgba(13,127,121,.32), inset 0 1px 0 rgba(255,255,255,.18);color:#f8ffff}.btn.secondary{background:color-mix(in srgb, var(--color-surface) 92%, transparent);color:var(--color-text);border-color:color-mix(in srgb, var(--color-primary) 20%, transparent);box-shadow:0 10px 22px rgba(8,35,40,.05);position:relative;overflow:hidden;backdrop-filter:blur(10px)}[data-theme="light"] .btn.secondary{background:linear-gradient(180deg,#fffdf9 0%, #f3efe6 100%);color:#223431;border-color:rgba(11,110,115,.14)}.btn.secondary::after{content:"";position:absolute;inset:auto 14px 8px 14px;height:2px;border-radius:999px;background:linear-gradient(90deg,transparent,color-mix(in srgb, var(--color-primary) 70%, white),transparent);opacity:.68;transition:opacity .35s ease, transform .35s ease}.btn.secondary:hover{background:linear-gradient(180deg,#ffffff 0%, #ecf8f5 100%);color:#123734;box-shadow:0 16px 34px rgba(15,65,61,.10), inset 0 1px 0 rgba(255,255,255,.95);transform:translateY(-2px)}.btn.secondary:hover::after{opacity:1;transform:scaleX(1.08)}.eyebrow{display:inline-flex;align-items:center;gap:.55rem;padding:.55rem .95rem;border-radius:var(--radius-full);border:1px solid var(--color-border);background:rgba(255,255,255,.04);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.04em;color:var(--color-text-muted);width:max-content}.eyebrow::before{content:'';width:.55rem;height:.55rem;border-radius:50%;background:var(--color-primary);box-shadow:0 0 0 .35rem rgba(99,212,191,.16)}.hero{padding-top:clamp(3rem,8vw,6rem);padding-bottom:3rem;position:relative;overflow:hidden}.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:2rem;align-items:center}.hero-copy h1{font-family:var(--font-display);font-size:var(--text-2xl);line-height:.94;letter-spacing:-.045em;max-width:11ch;margin-top:1rem}.hero-copy p{margin-top:1.15rem;max-width:58ch;color:var(--color-text-muted);font-size:clamp(1rem,.98rem + .18vw,1.08rem);line-height:1.72}.hero-actions,.hero-meta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.5rem}.pill{display:inline-flex;align-items:center;gap:.6rem;padding:.72rem .95rem;border-radius:var(--radius-full);border:1px solid var(--color-border);background:rgba(255,255,255,.04);font-size:var(--text-xs);color:var(--color-text-muted)}.hero-visual{position:relative;min-height:620px;border-radius:var(--radius-xl);overflow:hidden;border:1px solid var(--color-border);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));box-shadow:var(--shadow-lg);isolation:isolate}.hero-visual::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,color-mix(in srgb, var(--color-bg) 12%, transparent),color-mix(in srgb, var(--color-bg) 64%, transparent))}.hero-device{position:absolute;inset:0;padding:1.25rem;display:grid;grid-template-columns:1.1fr .9fr;gap:1rem}.hero-screen,.hero-side{border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);border-radius:1.35rem;background:color-mix(in srgb, var(--color-surface) 90%, transparent);backdrop-filter:blur(12px);position:relative;overflow:hidden}.hero-screen{padding:1rem}.hero-side{padding:1rem;display:grid;gap:1rem;align-content:start}.map-grid{position:absolute;inset:0;background-image:linear-gradient(color-mix(in srgb, var(--color-text) 10%, transparent) 1px, transparent 1px),linear-gradient(90deg, color-mix(in srgb, var(--color-text) 10%, transparent) 1px, transparent 1px);background-size:34px 34px;mask-image:linear-gradient(180deg,rgba(0,0,0,.95),rgba(0,0,0,.35))}.route{position:absolute;left:7%;top:14%;width:82%;height:66%}.mini-top{position:relative;z-index:2;display:flex;justify-content:space-between;gap:1rem;align-items:center;margin-bottom:1rem}.mini-top strong{font-size:1rem;color:var(--color-text)}.mini-top span{font-size:.78rem;color:var(--color-text-muted)}.chip-row{position:relative;z-index:2;display:flex;gap:.5rem;flex-wrap:wrap;margin-top:auto}.chip-row span{font-size:.74rem;padding:.45rem .65rem;border-radius:999px;background:color-mix(in srgb, var(--color-bg) 72%, white);border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);color:var(--color-text)}.telemetry-card{padding:.95rem;border-radius:1rem;border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);background:color-mix(in srgb, var(--color-bg) 78%, white)}.telemetry-card strong{display:block;font-size:1rem;color:var(--color-text)}.telemetry-card span{display:block;font-size:.8rem;color:var(--color-text-muted);margin-top:.15rem}.telemetry-line{display:flex;justify-content:space-between;gap:1rem;align-items:center}.bar{height:8px;border-radius:999px;background:color-mix(in srgb, var(--color-text) 10%, transparent);overflow:hidden;margin-top:.6rem}.bar b{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--color-primary),#89b8ff)}.hero-scroller{margin-top:2rem;overflow:hidden;border-top:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider);background:rgba(255,255,255,.02)}[data-theme="light"] .hero-scroller{background:rgba(255,255,255,.28)}.track{display:flex;gap:2rem;white-space:nowrap;padding:1rem 0;animation:marquee 26s linear infinite;color:var(--color-text-muted)}@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}.section-head{display:grid;gap:1rem;margin-bottom:2rem}.section-head h2{font-family:var(--font-display);font-size:var(--text-xl);line-height:1.04;letter-spacing:-.03em;max-width:14ch}.section-head p{max-width:60ch;color:var(--color-text-muted);line-height:1.72}.stats,.benefit-grid,.transport-grid,.catalog-grid,.steps,.contact-wrap,.proof-grid,.kpi-grid{display:grid;gap:1.1rem}.stats,.kpi-grid{grid-template-columns:repeat(4,1fr);margin-top:2rem}.proof-grid,.benefit-grid,.catalog-grid{grid-template-columns:repeat(3,1fr)}.transport-grid{grid-template-columns:repeat(2,1fr);gap:.85rem}.steps{grid-template-columns:repeat(4,1fr)}.contact-wrap{grid-template-columns:1.05fr .95fr}.card{border:1px solid var(--color-border);border-radius:var(--radius-xl);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));box-shadow:var(--shadow-sm)}[data-theme="light"] .card{background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(248,244,237,.78));box-shadow:0 12px 28px rgba(10,16,24,.05)}.card.pad,.benefit-card,.product-card,.step,.contact-panel,.proof-card{padding:1.5rem}.transport-card{padding:1rem}.stat strong,.kpi strong{display:block;font-family:var(--font-display);font-size:clamp(1.35rem,1.15rem + .8vw,2rem)}.stat span,.kpi span{color:var(--color-text-muted);font-size:var(--text-sm)}.benefit-card,.transport-card,.product-card,.proof-card{position:relative;overflow:hidden}.monitoring-access{display:flex;flex-direction:column;gap:var(--space-4);align-items:flex-start}.monitoring-access p{max-width:70ch;color:var(--color-text-muted)}.benefit-card::after,.proof-card::after{content:'';position:absolute;right:-40px;bottom:-40px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(99,212,191,.13),transparent 70%)}.benefit-card h3,.product-card h3,.step h3,.contact-panel h3,.proof-card h3{font-size:1.15rem;line-height:1.2}.transport-card h3{font-size:1.02rem;line-height:1.15}.benefit-card p,.product-card p,.step p,.contact-panel p,.proof-card p{color:var(--color-text-muted)}.transport-card p{color:var(--color-text-muted);font-size:.92rem;line-height:1.45}.transport-top{display:flex;justify-content:space-between;gap:.7rem;align-items:flex-start;margin-bottom:.55rem}.transport-num{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-faint)}.transport-icon{width:3.2rem;height:3.2rem;border-radius:1rem;display:grid;place-items:center;background:rgba(99,212,191,.12);color:var(--color-primary)}.transport-image{aspect-ratio:16/9;border-radius:.9rem;overflow:hidden;border:1px solid rgba(255,255,255,.08);margin-bottom:.75rem;background:linear-gradient(135deg,rgba(99,212,191,.18),rgba(91,129,255,.12));display:grid;place-items:center}.transport-image img{width:100%;height:100%;object-fit:contain;object-position:center;display:block}.product-media{aspect-ratio:1.2/1;border-radius:1.2rem;border:1px solid rgba(255,255,255,.12);display:grid;place-items:center;text-align:center;padding:1.2rem;background:linear-gradient(135deg,rgba(99,212,191,.08),rgba(90,129,255,.08));color:var(--color-text-faint);margin-bottom:1rem;position:relative;overflow:hidden}.product-media::before{content:'';position:absolute;inset:auto -20% -35% auto;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(99,212,191,.18),transparent 70%)}.product-media strong{display:block;color:var(--color-text);margin-bottom:.35rem}.price-line{display:flex;justify-content:space-between;align-items:end;gap:1rem;margin-top:1.2rem}.price{font-size:1.3rem;font-weight:800}.tag{font-size:var(--text-xs);padding:.45rem .7rem;border-radius:var(--radius-full);background:linear-gradient(135deg,#124947 0%,#17615d 52%,#1e7a74 100%);color:#f7ffff;border:1px solid rgba(255,255,255,.10);box-shadow:0 8px 18px rgba(18,73,71,.18), inset 0 1px 0 rgba(255,255,255,.08)}[data-theme="light"] .tag{background:linear-gradient(135deg,#eef8f6 0%,#e2f2ef 52%,#d6ece8 100%);color:#194541;border:1px solid rgba(23,97,93,.16);box-shadow:0 8px 18px rgba(18,73,71,.07), inset 0 1px 0 rgba(255,255,255,.72)}.contact-list{display:grid;gap:.8rem;margin-top:1rem;color:var(--color-text-muted)}.form{display:grid;gap:1rem;margin-top:1rem}.field{display:grid;gap:.55rem}.field label{font-size:var(--text-sm);font-weight:700}.field input,.field textarea,.field select{width:100%;padding:1rem;border-radius:1rem;border:1px solid var(--color-border);background:rgba(255,255,255,.03)}[data-theme="light"] .field input,[data-theme="light"] .field textarea,[data-theme="light"] .field select{background:rgba(255,255,255,.7)}.field textarea{min-height:120px;resize:vertical}.footer{padding:2rem 0;border-top:1px solid var(--color-divider);color:var(--color-text-muted)}.footer-wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease, transform .8s ease}.reveal.show{opacity:1;transform:none}.tilt{transition:transform .28s ease, border-color .28s ease, background .28s ease}.tilt:hover{transform:translateY(-6px);border-color:rgba(99,212,191,.25);background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03))}.pulse{animation:pulse 2.7s ease-in-out infinite}@keyframes pulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(99,212,191,.26)}50%{transform:scale(1.03);box-shadow:0 0 0 12px rgba(99,212,191,0)}}.float{animation:float 5.2s ease-in-out infinite}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}.draw-route{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 4s ease forwards 1s}@keyframes draw{to{stroke-dashoffset:0}}
+    .hero::after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(520px circle at var(--mx,70%) var(--my,28%), color-mix(in srgb, var(--color-primary) 18%, transparent), transparent 62%);opacity:.65;transition:opacity .35s ease, background .35s ease}[data-theme="light"] .hero::after{display:none}
+    .ambient-orb{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;opacity:.22;mix-blend-mode:screen;animation:orb-float 16s ease-in-out infinite}.orb-a{width:300px;height:300px;top:8%;left:-6%;background:rgba(82,220,206,.25)}.orb-b{width:260px;height:260px;right:-4%;top:22%;background:rgba(117,208,255,.18);animation-delay:-5s}.orb-c{width:220px;height:220px;left:28%;bottom:4%;background:rgba(89,221,208,.16);animation-delay:-9s}[data-theme="light"] .ambient-orb{opacity:.08;mix-blend-mode:normal}
+    @keyframes orb-float{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(0,-16px,0) scale(1.06)}}
+    .hero-visual::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(125deg, transparent 0%, color-mix(in srgb, var(--color-primary) 10%, transparent) 48%, transparent 100%);opacity:.55;mix-blend-mode:screen}[data-theme="light"] .hero-visual::after{opacity:.25}
+    .site-header::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-primary) 36%, transparent), transparent);opacity:.8}[data-theme="light"] .site-header::after{background:linear-gradient(90deg,transparent,rgba(32,35,31,.08),transparent);opacity:1}
+    
+    .quick-jump{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.25rem}.quick-link{display:inline-flex;align-items:center;gap:.55rem;padding:.8rem 1rem;border-radius:1rem;border:1px solid var(--color-border);background:color-mix(in srgb,var(--color-surface) 88%,transparent);font-size:var(--text-sm);font-weight:700;color:var(--color-text);box-shadow:var(--shadow-sm)}.quick-link:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--color-primary) 26%,transparent)}.quick-link b{width:.55rem;height:.55rem;border-radius:50%;background:var(--color-primary);display:block}.section-band{position:relative}.section-band::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--color-primary) 22%,transparent),transparent)}.contact-panel .hero-actions .btn{flex:1 1 auto}.benefit-card h3,.proof-card h3,.product-card h3{margin-bottom:.45rem}.benefit-card p,.proof-card p,.product-card p,.contact-panel p{line-height:1.68}.card:hover{box-shadow:var(--shadow-md)}
+@media (max-width:1024px){.hero-grid,.contact-wrap,.hero-device{grid-template-columns:1fr}.stats,.kpi-grid,.benefit-grid,.transport-grid,.catalog-grid,.proof-grid,.steps{grid-template-columns:repeat(2,1fr)}.nav{display:none}.hero-visual{min-height:760px}}
+    @media (max-width:680px){.stats,.kpi-grid,.benefit-grid,.transport-grid,.catalog-grid,.proof-grid,.steps{grid-template-columns:1fr}.nav-actions .btn.secondary{display:none}.hero-visual,.transport-card,.product-card,.contact-panel,.card.pad,.proof-card{padding:1.25rem}.brand small{display:none}.hero-copy h1{max-width:11ch}.hero-visual{min-height:640px}}
+    @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+  </style>
+ </head>
+ <body>
+  <a class="skip-link" href="#main">
+   Перейти к содержимому
+  </a>
+  <header class="site-header">
+   <div class="container nav-wrap">
+    <a aria-label="GeoGps" class="brand" href="#hero">
+     <span aria-hidden="true" class="brand-mark">
+      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24">
+       <path d="M12 21s6-5.7 6-11a6 6 0 1 0-12 0c0 5.3 6 11 6 11Z">
+       </path>
+       <circle cx="12" cy="10" r="2.5">
+       </circle>
+      </svg>
+     </span>
+     <span>
+      <strong>
+       GeoGps
+      </strong>
+      <small>
+       GPS/ГЛОНАСС мониторинг
+      </small>
+     </span>
+    </a>
+    <nav aria-label="Основная навигация" class="nav">
+     <a href="#why">
+      Преимущества
+     </a>
+     <a href="#benefits">
+      Функции
+     </a>
+     <a href="#transport-types">
+      Транспорт
+     </a>
+     <a href="#catalog">
+      Решения
+     </a>
+     <a href="#contact">
+      Контакты
+     </a>
+    </nav>
+    <div class="nav-actions">
+     <button aria-label="Переключить тему" class="theme-toggle" data-theme-toggle="data-theme-toggle" type="button">
+     </button>
+     <a class="btn secondary" href="https://track.gps1.kz/" rel="noopener noreferrer" target="_blank">
+      Мониторинг
+     </a>
+     <a class="btn" href="#contact">
+      Получить расчёт
+     </a>
+    </div>
+   </div>
+  </header>
+  <main id="main">
+   <section class="hero" id="hero">
+    <span aria-hidden="true" class="ambient-orb orb-a">
+    </span>
+    <span aria-hidden="true" class="ambient-orb orb-b">
+    </span>
+    <span aria-hidden="true" class="ambient-orb orb-c">
+    </span>
+    <div class="container hero-grid">
+     <div class="hero-copy reveal">
+      <span class="eyebrow">
+       GPS / ГЛОНАСС мониторинг
+      </span>
+      <h1>
+       Контроль транспорта, топлива и водителей в одной системе
+      </h1>
+      <p>
+       GeoGps работает с 2010 года и помогает бизнесу видеть транспорт на карте в реальном времени, контролировать маршруты, стоянки, заправки, сливы топлива и получать отчёты по каждому объекту через веб-платформу. Доступны продажа и аренда оборудования, установка GPS-трекеров, контроль топлива, блокировка двигателя, мобильный доступ с Android и iPhone, а также техническое сопровождение.
+      </p>
+      <div class="hero-actions">
+       <a class="btn pulse" href="#catalog">
+        Готовые решения
+       </a>
+       <a class="btn secondary" href="#contact">
+        Получить консультацию
+       </a>
+      </div>
+      <div class="quick-jump">
+       <a class="quick-link" href="#benefits">
+        <b>
+        </b>
+        Функции системы
+       </a>
+       <a class="quick-link" href="#transport-types">
+        <b>
+        </b>
+        Типы транспорта
+       </a>
+       <a class="quick-link" href="#catalog">
+        <b>
+        </b>
+        Готовые решения
+       </a>
+      </div>
+      <div class="hero-meta">
+       <span class="pill">
+        Работаем с 2010 года
+       </span>
+       <span class="pill">
+        Продажа и аренда GPS-оборудования
+       </span>
+       <span class="pill">
+        Android / iPhone доступ
+       </span>
+       <span class="pill">
+        Контроль топлива и блокировка двигателя
+       </span>
+      </div>
+     </div>
+     <div class="hero-visual reveal">
+      <div class="hero-device">
+       <div class="hero-screen">
+        <div class="map-grid">
+        </div>
+        <div class="mini-top">
+         <strong>
+          GeoGps Fleet Panel
+         </strong>
+         <span>
+          Карта маршрутов и событий
+         </span>
+        </div>
+        <svg aria-hidden="true" class="route" fill="none" viewbox="0 0 500 320">
+         <path class="draw-route" d="M33 250C78 188 119 228 172 160C214 107 286 95 332 124C401 168 407 243 343 258C282 273 247 224 202 245C152 269 91 294 33 250Z" stroke="rgba(99,212,191,.95)" stroke-linecap="round" stroke-linejoin="round" stroke-width="5">
+         </path>
+         <circle class="float" cx="172" cy="160" fill="#63d4bf" r="9">
+         </circle>
+         <circle class="float" cx="332" cy="124" fill="#87b8ff" r="9" style="animation-delay:.4s">
+         </circle>
+         <circle class="float" cx="343" cy="258" fill="#63d4bf" r="9" style="animation-delay:.7s">
+         </circle>
+        </svg>
+        <div class="chip-row">
+         <span>
+          Маршруты
+         </span>
+         <span>
+          Стоянки
+         </span>
+         <span>
+          Геозоны
+         </span>
+         <span>
+          События
+         </span>
+        </div>
+       </div>
+       <div class="hero-side">
+        <div class="telemetry-card">
+         <div class="telemetry-line">
+          <strong>
+           Топливо
+          </strong>
+          <span>
+           заправки и сливы
+          </span>
+         </div>
+         <div class="bar">
+          <b style="width:78%">
+          </b>
+         </div>
+        </div>
+        <div class="telemetry-card">
+         <div class="telemetry-line">
+          <strong>
+           Пробег
+          </strong>
+          <span>
+           324 км за смену
+          </span>
+         </div>
+         <div class="bar">
+          <b style="width:62%">
+          </b>
+         </div>
+        </div>
+        <div class="telemetry-card">
+         <div class="telemetry-line">
+          <strong>
+           Геозоны
+          </strong>
+          <span>
+           въезд, выезд, отклонения
+          </span>
+         </div>
+         <div class="bar">
+          <b style="width:86%">
+          </b>
+         </div>
+        </div>
+        <div class="telemetry-card">
+         <div class="telemetry-line">
+          <strong>
+           Отчёты
+          </strong>
+          <span>
+           рейсы, простои, активность
+          </span>
+         </div>
+         <div class="bar">
+          <b style="width:70%">
+          </b>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="hero-scroller">
+     <div class="container">
+      <div class="track">
+       <span>
+        Мониторинг транспорта
+       </span>
+       <span>
+        Контроль маршрутов
+       </span>
+       <span>
+        Топливо и датчики
+       </span>
+       <span>
+        Геозоны и тревоги
+       </span>
+       <span>
+        Отчёты и аналитика
+       </span>
+       <span>
+        Снижение простоев
+       </span>
+       <span>
+        Контроль водителей
+       </span>
+       <span>
+        Мониторинг транспорта
+       </span>
+       <span>
+        Контроль маршрутов
+       </span>
+       <span>
+        Топливо и датчики
+       </span>
+       <span>
+        Геозоны и тревоги
+       </span>
+       <span>
+        Отчёты и аналитика
+       </span>
+      </div>
+     </div>
+    </div>
+    <div class="container stats">
+     <article class="card pad stat reveal tilt">
+      <strong>
+       2010
+      </strong>
+      <span>
+       работаем на рынке мониторинга
+      </span>
+     </article>
+     <article class="card pad stat reveal tilt">
+      <strong>
+       24/7
+      </strong>
+      <span>
+       контроль объектов в системе
+      </span>
+     </article>
+     <article class="card pad stat reveal tilt">
+      <strong>
+       GPS / GSM
+      </strong>
+      <span>
+       координаты, события и телеметрия
+      </span>
+     </article>
+     <article class="card pad stat reveal tilt">
+      <strong>
+       Топливо
+      </strong>
+      <span>
+       заправки, сливы и расход
+      </span>
+     </article>
+     <article class="card pad stat reveal tilt">
+      <strong>
+       Отчёты
+      </strong>
+      <span>
+       маршруты, пробег, простои
+      </span>
+     </article>
+    </div>
+   </section>
+   <section class="section section-band" id="why">
+    <div class="container">
+     <div class="section-head reveal">
+      <span class="eyebrow">
+       Преимущества
+      </span>
+      <h2>
+       Преимущества системы для бизнеса
+      </h2>
+      <p>
+       GeoGps помогает руководителю видеть транспорт в реальном времени, контролировать расход топлива, соблюдать маршруты и быстрее реагировать на отклонения в работе автопарка.
+      </p>
+     </div>
+     <div class="proof-grid">
+      <article class="card proof-card reveal tilt">
+       <h3>
+        Понятная выгода
+       </h3>
+       <p>
+        Каждый блок отвечает на коммерческий вопрос клиента: что контролируется, какие данные видны в системе и какую пользу это даёт для бизнеса.
+       </p>
+      </article>
+      <article class="card proof-card reveal tilt">
+       <h3>
+        Больше доверия
+       </h3>
+       <p>
+        Структура страницы подчёркивает функции системы, сценарии применения, готовые решения, оборудование и понятный путь к заявке.
+       </p>
+      </article>
+      <article class="card proof-card reveal tilt">
+       <h3>
+        Выше конверсия
+       </h3>
+       <p>
+        Сильный первый экран, понятные CTA, реальные формулировки и логичная структура делают страницу убедительнее для клиента.
+       </p>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="section section-band" id="benefits">
+    <div class="container">
+     <div class="section-head reveal">
+      <span class="eyebrow">
+       Функции системы
+      </span>
+      <h2>
+       Что получает руководитель после подключения
+      </h2>
+      <p>
+       Система помогает не просто видеть транспорт на карте, а контролировать дисциплину водителей, расход топлива, выполнение маршрутов и эффективность автопарка в целом.
+      </p>
+     </div>
+     <div class="benefit-grid">
+      <article class="card benefit-card reveal tilt">
+       <h3>
+        Онлайн-мониторинг
+       </h3>
+       <p>
+        Просмотр транспорта в реальном времени, история поездок, маршруты, стоянки и фактическая активность по каждому объекту.
+       </p>
+      </article>
+      <article class="card benefit-card reveal tilt">
+       <h3>
+        Контроль топлива
+       </h3>
+       <p>
+        Работа с датчиками, анализ расхода, фиксация заправок и сливов, более прозрачный учёт топливных затрат.
+       </p>
+      </article>
+      <article class="card benefit-card reveal tilt">
+       <h3>
+        Геозоны и тревоги
+       </h3>
+       <p>
+        Уведомления о выезде с маршрута, превышении скорости, входе и выходе из заданных зон и других событиях.
+       </p>
+      </article>
+      <article class="card benefit-card reveal tilt">
+       <h3>
+        Отчёты по рейсам
+       </h3>
+       <p>
+        Маршруты, пробег, простои, время в движении, посещение объектов и отчётность по периодам.
+       </p>
+      </article>
+      <article class="card benefit-card reveal tilt">
+       <h3>
+        Контроль водителей
+       </h3>
+       <p>
+        Быстрее выявляются отклонения, нецелевые поездки, долгие простои и нарушения в ходе работы транспорта.
+       </p>
+      </article>
+      <article class="card benefit-card reveal tilt">
+       <h3>
+        Управление автопарком
+       </h3>
+       <p>
+        Одна система для контроля техники, принятия решений и снижения затрат на эксплуатацию транспорта.
+       </p>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="section">
+    <div class="container">
+     <div class="section-head reveal">
+      <span class="eyebrow">
+       Результат для бизнеса
+      </span>
+      <h2>
+       Какие показатели важны клиенту
+      </h2>
+      <p>
+       Система помогает сократить потери, повысить дисциплину водителей и сделать управление автопарком более прозрачным.
+      </p>
+     </div>
+     <div class="kpi-grid">
+      <article class="card pad kpi reveal tilt">
+       <strong>
+        Меньше простоев
+       </strong>
+       <span>
+        контроль стоянок и холостого времени
+       </span>
+      </article>
+      <article class="card pad kpi reveal tilt">
+       <strong>
+        Меньше расход
+       </strong>
+       <span>
+        прозрачность заправок и сливов топлива
+       </span>
+      </article>
+      <article class="card pad kpi reveal tilt">
+       <strong>
+        Больше дисциплины
+       </strong>
+       <span>
+        контроль маршрутов и нарушений
+       </span>
+      </article>
+      <article class="card pad kpi reveal tilt">
+       <strong>
+        Быстрее решения
+       </strong>
+       <span>
+        отчёты и онлайн-карта в одной панели
+       </span>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="section" id="transport-types">
+    <div class="container">
+     <div class="section-head reveal">
+      <span class="eyebrow">
+       ГПС мониторинг в Казахстане
+      </span>
+      <h2>
+       На какой транспорт можно установить систему
+      </h2>
+      <p>
+       Решение подходит для разных типов техники: от корпоративных легковых автомобилей до автобусов, спецтехники и коммерческого транспорта.
+      </p>
+     </div>
+     <div class="transport-grid">
+      <article class="card transport-card reveal tilt">
+       <div class="transport-image">
+        <img alt="Легковые автомобили" height="450" loading="lazy" src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/3a90051c-b9b0-407e-b67a-5e495897fde1.png" width="800"/>
+       </div>
+       <div class="transport-top">
+        <div>
+         <div class="transport-num">
+          01
+         </div>
+         <h3>
+          Легковые автомобили
+         </h3>
+        </div>
+        <div class="transport-icon">
+         <svg fill="none" height="24" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="24">
+          <path d="M5 16l1.5-5h11L19 16">
+          </path>
+          <path d="M4 16h16v3a1 1 0 0 1-1 1h-1v-2H6v2H5a1 1 0 0 1-1-1v-3Z">
+          </path>
+         </svg>
+        </div>
+       </div>
+       <p>
+        Подходит для служебных и корпоративных машин, контроля маршрутов, стоянок и использования транспорта.
+       </p>
+      </article>
+      <article class="card transport-card reveal tilt">
+       <div class="transport-image">
+        <img alt="Коммерческий транспорт" height="450" loading="lazy" src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/d67f2ae90cb01840f300ba67b11c834bc1c3a0f7.jpg" width="800"/>
+       </div>
+       <div class="transport-top">
+        <div>
+         <div class="transport-num">
+          02
+         </div>
+         <h3>
+          Коммерческий транспорт
+         </h3>
+        </div>
+        <div class="transport-icon">
+         <svg fill="none" height="24" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="24">
+          <path d="M2 8h12v8H2z">
+          </path>
+          <path d="M14 11h3l3 3v2h-6z">
+          </path>
+         </svg>
+        </div>
+       </div>
+       <p>
+        Для доставки, выездного сервиса, городской логистики и контроля дисциплины водителей.
+       </p>
+      </article>
+      <article class="card transport-card reveal tilt">
+       <div class="transport-image">
+        <img alt="Грузовые автомобили" height="450" loading="lazy" src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/a170b4f26b97f093ab9186cfca7aca2bb9f2f810.jpg" width="800"/>
+       </div>
+       <div class="transport-top">
+        <div>
+         <div class="transport-num">
+          03
+         </div>
+         <h3>
+          Грузовые автомобили
+         </h3>
+        </div>
+        <div class="transport-icon">
+         <svg fill="none" height="24" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="24">
+          <path d="M1.5 9h12v7h-12z">
+          </path>
+          <path d="M13.5 11h4l2.5 3v2h-6.5z">
+          </path>
+         </svg>
+        </div>
+       </div>
+       <p>
+        Контроль рейсов, посещения точек, пробега, топлива и отклонений маршрута по каждому автомобилю.
+       </p>
+      </article>
+      <article class="card transport-card reveal tilt">
+       <div class="transport-image">
+        <img alt="Спецтехника" height="450" loading="lazy" src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/8d2d0501-cb58-43e9-8566-835a1cdda1a3.png" width="800"/>
+       </div>
+       <div class="transport-top">
+        <div>
+         <div class="transport-num">
+          04
+         </div>
+         <h3>
+          Коммунальная, карьерная и спецтехника
+         </h3>
+        </div>
+        <div class="transport-icon">
+         <svg fill="none" height="24" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="24">
+          <path d="M3 15h10l2 3H8">
+          </path>
+          <path d="M13 10h5l3 5h-6">
+          </path>
+         </svg>
+        </div>
+       </div>
+       <p>
+        Учёт фактической работы техники, контроль простоев, перемещений, топлива и работы на объектах.
+       </p>
+      </article>
+      <article class="card transport-card reveal tilt">
+       <div class="transport-image">
+        <img alt="Мотоциклы и мопеды" height="450" loading="lazy" src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/d67f2ae90cb01840f300ba67b11c834bc1c3a0f7.jpg" width="800"/>
+       </div>
+       <div class="transport-top">
+        <div>
+         <div class="transport-num">
+          05
+         </div>
+         <h3>
+          Мотоциклы, мопеды
+         </h3>
+        </div>
+        <div class="transport-icon">
+         <svg fill="none" height="24" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="24">
+          <circle cx="6.5" cy="17.5" r="2.5">
+          </circle>
+          <circle cx="17.5" cy="17.5" r="2.5">
+          </circle>
+          <path d="M8.5 17.5h3l2-4h3.5">
+          </path>
+          <path d="M12 9h3l2 4">
+          </path>
+         </svg>
+        </div>
+       </div>
+       <p>
+        Компактное решение для курьеров, мотоциклов, мопедов и быстрого городского транспорта.
+       </p>
+      </article>
+      <article class="card transport-card reveal tilt">
+       <div class="transport-image">
+        <img alt="Автобусы" height="450" loading="lazy" src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/69fcb3557a3e78bcc37c7e3d435f3f81317486f4.jpg" width="800"/>
+       </div>
+       <div class="transport-top">
+        <div>
+         <div class="transport-num">
+          06
+         </div>
+         <h3>
+          Автобусы
+         </h3>
+        </div>
+        <div class="transport-icon">
+         <svg fill="none" height="24" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="24">
+          <rect height="11" rx="2" width="16" x="4" y="5">
+          </rect>
+          <path d="M7 16v3M17 16v3M8 10h.01M16 10h.01">
+          </path>
+         </svg>
+        </div>
+       </div>
+       <p>
+        Контроль маршрутов, расписания, остановок, соблюдения графика и фактического движения пассажирского транспорта.
+       </p>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="section section-band" id="catalog">
+    <div class="container">
+     <div class="section-head reveal">
+      <span class="eyebrow">
+       Решения и оборудование
+      </span>
+      <h2>
+       Готовые решения для разных задач
+      </h2>
+      <p>
+       Клиент сразу видит, какое решение подходит под его задачу: базовый мониторинг, контроль топлива или усиление безопасности транспорта.
+      </p>
+     </div>
+     <div class="catalog-grid">
+      <article class="card product-card reveal tilt">
+       <div class="product-media">
+        <div>
+         <strong>
+          Базовый мониторинг
+         </strong>
+         <div>
+          GPS-трекер, онлайн-карта, история маршрутов, стоянки и отчёты по пробегу.
+         </div>
+        </div>
+       </div>
+       <h3>
+        Контроль транспорта на карте
+       </h3>
+       <p>
+        Подходит для компаний, которым нужен быстрый старт: видеть объекты, проверять маршруты и анализировать поездки.
+       </p>
+       <div class="price-line">
+        <div>
+         <div class="price">
+          от 10 000 тг
+         </div>
+         <div class="tag">
+          Старт
+         </div>
+        </div>
+        <a class="btn secondary" href="#contact">
+         Запросить
+        </a>
+       </div>
+      </article>
+      <article class="card product-card reveal tilt">
+       <div class="product-media">
+        <div>
+         <strong>
+          Мониторинг + топливо
+         </strong>
+         <div>
+          Трекер, датчики топлива, уведомления по заправкам, сливам и фактическому расходу.
+         </div>
+        </div>
+       </div>
+       <h3>
+        Контроль топлива и рейсов
+       </h3>
+       <p>
+        Решение для грузового транспорта, логистики и компаний, где важно контролировать топливные затраты.
+       </p>
+       <div class="price-line">
+        <div>
+         <div class="price">
+          по запросу
+         </div>
+         <div class="tag">
+          Топливо
+         </div>
+        </div>
+        <a class="btn secondary" href="#contact">
+         Уточнить
+        </a>
+       </div>
+      </article>
+      <article class="card product-card reveal tilt">
+       <div class="product-media">
+        <div>
+         <strong>
+          Мониторинг + безопасность
+         </strong>
+         <div>
+          Блокировка двигателя, тревожные события, доступ к системе и расширенный контроль техники.
+         </div>
+        </div>
+       </div>
+       <h3>
+        Защита и контроль доступа
+       </h3>
+       <p>
+        Подходит для служебного транспорта, аренды, такси и задач, где важна безопасность эксплуатации.
+       </p>
+       <div class="price-line">
+        <div>
+         <div class="price">
+          по запросу
+         </div>
+         <div class="tag">
+          Безопасность
+         </div>
+        </div>
+        <a class="btn secondary" href="#contact">
+         Уточнить
+        </a>
+       </div>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="section section-band" id="monitoring-access">
+    <div class="container">
+     <div class="card pad reveal monitoring-access">
+      <span class="eyebrow">
+       Мониторинг
+      </span>
+      <h2>
+       Хотите посмотреть, как работает система?
+      </h2>
+      <p>
+       Посмотрите, как работает система мониторинга в реальном интерфейсе: карта объектов, маршруты, стоянки и основные отчёты доступны в ознакомительном режиме.
+       <br/>
+       <br/>
+       <strong>
+        Пользователь:
+       </strong>
+       Demo
+       <br/>
+       <strong>
+        Пароль:
+       </strong>
+       Demo
+      </p>
+      <div class="hero-actions">
+       <a class="btn secondary" href="https://track.gps1.kz/" rel="noopener noreferrer" target="_blank">
+        Открыть мониторинг
+       </a>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="section" id="contact">
+    <div class="container contact-wrap">
+     <article class="card contact-panel reveal">
+      <span class="eyebrow">
+       Контакты
+      </span>
+      <h3 style="margin-top:1rem">
+       Связь с компанией
+      </h3>
+      <p>
+       Оставьте заявку или свяжитесь напрямую, чтобы получить подбор оборудования, расчёт стоимости и рекомендации под ваш автопарк.
+      </p>
+      <div class="contact-list">
+       <div>
+        <strong>
+         Телефон:
+        </strong>
+        +7 705 775 44 41
+       </div>
+       <div>
+        <strong>
+         Доп. номер:
+        </strong>
+        +7 700 775 44 41
+       </div>
+       <div>
+        <strong>
+         Система:
+        </strong>
+        track.gps1.kz
+       </div>
+       <div>
+        <strong>
+         Город:
+        </strong>
+        Алматы, Казахстан
+       </div>
+       <div>
+        <strong>
+         Формат:
+        </strong>
+        установка, настройка, сопровождение
+       </div>
+      </div>
+      <div class="hero-actions">
+       <a class="btn" href="tel:+77057754441">
+        Позвонить
+       </a>
+       <a class="btn secondary" href="https://track.gps1.kz/" rel="noopener noreferrer" target="_blank">
+        Мониторинг
+       </a>
+      </div>
+     </article>
+     <article class="card contact-panel reveal">
+      <span class="eyebrow">
+       Заявка
+      </span>
+      <h3 style="margin-top:1rem">
+       Получить предложение
+      </h3>
+      <form action="p.php" class="form" id="lead-form" method="post">
+       <div class="field">
+        <label for="name">
+         Имя
+        </label>
+        <input id="name" name="name" placeholder="Ваше имя" required="" type="text"/>
+       </div>
+       <div class="field">
+        <label for="phone">
+         Телефон
+        </label>
+        <input id="phone" name="phone" placeholder="+7 (___) ___-__-__" required="" type="tel"/>
+       </div>
+       <div class="field">
+        <label for="service">
+         Что интересует
+        </label>
+        <select id="service" name="service">
+         <option>
+          GPS мониторинг транспорта
+         </option>
+         <option>
+          Контроль топлива
+         </option>
+         <option>
+          Оборудование и трекеры
+         </option>
+         <option>
+          Безопасность и блокировка
+         </option>
+         <option>
+          Консультация
+         </option>
+        </select>
+       </div>
+       <div class="field">
+        <label for="message">
+         Комментарий
+        </label>
+        <textarea id="message" name="message" placeholder="Например: нужен мониторинг для 12 грузовых автомобилей и контроль топлива"></textarea>
+       </div>
+       <button class="btn" type="submit">
+        Отправить заявку
+       </button>
+      </form>
+     </article>
+    </div>
+   </section>
+  </main>
+  <footer class="footer">
+   <div class="container footer-wrap">
+    <div>
+     GeoGps — GPS/ГЛОНАСС мониторинг транспорта, контроль топлива, отчёты и управление автопарком.
+    </div>
+    <div>
+     Современное решение для контроля транспорта и топлива.
+    </div>
+   </div>
+  </footer>
+  <script>
+    (function () {
+      const toggle = document.querySelector('[data-theme-toggle]');
+      const root = document.documentElement;
+      let current = root.getAttribute('data-theme') || 'dark';
+
+      const renderIcon = () =>
+        current === 'dark'
+          ? '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>'
+          : '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>';
+
+      const applyTheme = () => {
+        root.setAttribute('data-theme', current);
+        if (toggle) {
+          toggle.innerHTML = renderIcon();
+          toggle.setAttribute(
+            'aria-label',
+            current === 'dark'
+              ? 'Переключить на светлую тему'
+              : 'Переключить на тёмную тему'
+          );
+        }
+      };
+
+      applyTheme();
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          current = current === 'dark' ? 'light' : 'dark';
+          applyTheme();
+        });
+      }
+
+      const hero = document.querySelector('.hero');
+      if (hero) {
+        hero.addEventListener('pointermove', (e) => {
+          if (document.documentElement.getAttribute('data-theme') === 'light') return;
+          const r = hero.getBoundingClientRect();
+          hero.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+          hero.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+        });
+      }
+
+      const items = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('show');
+            }
+          });
+        }, { threshold: 0.14 });
+
+        items.forEach((el) => io.observe(el));
+      } else {
+        items.forEach((el) => el.classList.add('show'));
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const oldHints = [...document.querySelectorAll('form div')].filter((el) =>
+          el.textContent.includes('Сейчас форма сама по себе никуда не отправляет')
+        );
+        oldHints.forEach((el) => el.remove());
+      });
+    })();
+  </script>
+ </body>
+</html>
